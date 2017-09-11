@@ -1,4 +1,4 @@
-package com.byzilio;
+package byzilio;
 
 import java.io.FileNotFoundException;
 import java.util.Scanner;
@@ -40,7 +40,7 @@ public class Basics {
         Scanner sc;
         sc = new Scanner(System.in);
         int a = sc.nextInt(), b = sc.nextInt(), c = sc.nextInt();
-        System.out.println((a + b + c) / 3);
+        System.out.println((double) (a + b + c) / 3);
 
         if(b > a) {
             int k = a;
@@ -71,8 +71,24 @@ public class Basics {
         Scanner sc;
         sc = new Scanner(System.in);
         double a = sc.nextDouble(), b = sc.nextDouble(), c = sc.nextDouble();
-        double D = b*b - 4 * a * c;
+        double D = b * b - 4 * a * c;
         double x1, x2;
+
+        if(a == 0) {
+            if(b == 0) {
+                if(c == 0){
+                    System.out.println("Любое");
+                    return;
+
+                }
+                System.out.println("Нет");
+                return;
+            } else {
+                System.out.println("Корень:" + (-c / b));
+                return;
+            }
+
+        }
 
         if(D > 0) {
             x1 = ( -b + Math.sqrt(D) ) / 2 * a;
@@ -99,7 +115,7 @@ public class Basics {
         double step = sc.nextDouble();
         System.out.println();
         for(double d = s;d <= e;d = d + step){
-            System.out.println("Sin(" + d + ") = " + Math.sqrt(d));
+            System.out.println("Sin(" + d + ") = " + Math.sin(d));
         }
     }
 
@@ -109,9 +125,68 @@ public class Basics {
         double a = sc.nextDouble(), b = sc.nextDouble(), c = sc.nextDouble();
         double d = sc.nextDouble(), e = sc.nextDouble(), f = sc.nextDouble();
         double x , y;
-        y = (a * f - c * d)/(a * e - b * d);
-        x = (c * e - b * f)/(a * e - b * d);
-        System.out.println("Неизвестные: x = "+ x + " y = " + y);
+
+        if( ( (a == 0) && (b == 1) && (c == 0) && (d == 0) && (e == 0) && (f == 0) )
+            || ((a == 0) && (b == 0) && (c == 0) && (d == 0) && (e == 1) && (f == 0))
+                || ((a == 1) && (b == 0) && (c == 0) && (d == 0) && (e == 0) && (f == 0))
+                    || ((a == 0) && (b == 0) && (c == 0) && (d == 1) && (e == 0) && (f == 0))
+                )
+        {
+            System.out.println("Нет решений");
+            return;
+        }
+
+
+        double A , B , C;
+
+        if(a == 0)
+            A = d;
+        else
+            A = a / d;
+
+
+        if(b == 0)
+            B = e;
+        else
+            B = b / e;
+
+
+        if(c == 0)
+            C = f;
+        else
+            C = c / f;
+
+        if( A != B ){
+            double k = (a * f - c * d);
+            if(k == 0)
+                y = 0;
+            else y = (a * f - c * d) / (a * e - b * d);
+            double l = (c * e - b * f);
+            if(l == 0)
+                x = 0;
+            else x = (c * e - b * f) / (a * e - b * d);
+            System.out.println("Неизвестные: x = " + x + " y = " + y);
+        }
+        if( ( A == B) && ( B == C) ) {
+            System.out.println("Точки на прямой");
+        }
+        if( ( A == B ) && (B != C) ){
+            System.out.println("Нет решений");
+        }
+
+        /*
+        if( ((a == 0) && (b == 0) && (c != 0)) || ((d == 0) && (e == 0) && (f != 0)) ){
+            System.out.println("Неверно!");
+        } else {
+            if( A != B ){
+                y = (a * f - c * d) / (a * e - b * d);
+                x = (c * e - b * f) / (a * e - b * d);
+                System.out.println("Неизвестные: x = " + x + " y = " + y);
+            } else {
+                System.out.println("Любое");
+            }
+        }
+        */
     }
 
     public void seventh(){
@@ -128,6 +203,7 @@ public class Basics {
                 fact *= k;
             }
             next = Math.pow(x,i) / fact;
+            System.out.println(next);
             sum += next;
             if(Math.abs(next) < t) break;
 
@@ -135,5 +211,6 @@ public class Basics {
         }
 
         System.out.println(sum);
+        System.out.println(Math.exp(2));
     }
 }
