@@ -1,4 +1,4 @@
-package byzilio;
+package com.byzilio;
 
 import java.io.FileNotFoundException;
 import java.util.Scanner;

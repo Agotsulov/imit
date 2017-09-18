@@ -1,9 +1,16 @@
-package byzilio;
+package com.byzilio;
+
+class DiffLengthException extends Exception{
+    public DiffLengthException() {
+        //initCause(e);
+        System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!");
+    }
+}
 
 public class Vector3DArray {
 
-    int length;
-    Vector3D array[];
+    private int length;
+    private Vector3D array[];
 
     public Vector3DArray(int length){
         this.length = length;
@@ -42,6 +49,22 @@ public class Vector3DArray {
             }
         }
         return -1;
+    }
+
+    public Vector3D[] factor(Vector3D[] c) throws DiffLengthException {
+        Vector3D result[] = new Vector3D[length];
+
+        for(int i = 0;i < c.length;i++){
+            result[i] = new Vector3D(array[i].getCenter().x * c[i].getCenter().x,array[i].getCenter().y * c[i].getCenter().y,array[i].getCenter().z * c[i].getCenter().z);
+        }
+        if( 0 != (length - c.length) ){
+            throw new DiffLengthException();
+        }
+        for(int i = 0;i < (length - c.length);i++){
+            result[i] = new Vector3D(0,0,0);
+        }
+
+        return result;
     }
 
     public Point3D[] move(Point3D p){

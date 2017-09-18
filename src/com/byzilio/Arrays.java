@@ -1,4 +1,4 @@
-package byzilio;
+package com.byzilio;
 
 import java.io.PrintStream;
 import java.util.Scanner;

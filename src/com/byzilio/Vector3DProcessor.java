@@ -1,4 +1,4 @@
-package byzilio;
+package com.byzilio;
 
 public class Vector3DProcessor {
 
