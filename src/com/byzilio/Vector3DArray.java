@@ -15,6 +15,9 @@ public class Vector3DArray {
     public Vector3DArray(int length){
         this.length = length;
         array = new Vector3D[this.length];
+        for( int i=0; i< array.length; i++){
+            array[i]=new Vector3D();
+        }
     }
 
     public Vector3D get(int i) {
@@ -77,9 +80,9 @@ public class Vector3DArray {
 
     public Vector3D sumAll(){
         Vector3D sum = new Vector3D(0,0,0);
-        Vector3DProcessor vp = new Vector3DProcessor();
+       // Vector3DProcessor vp = new Vector3DProcessor();
             for(int i = 0;i < length;i++){
-            sum = vp.sum(sum,array[i]);
+            sum = Vector3DProcessor.sum(sum,array[i]);
         }
         return sum;
     }

@@ -69,8 +69,11 @@ public class Vector3D {
 
         Vector3D vector3D = (Vector3D) o;
 
-        if (start != null ? !start.equals(vector3D.start) : vector3D.start != null) return false;
-        return end != null ? end.equals(vector3D.end) : vector3D.end == null;
+        return getCenter().equals(vector3D.getCenter());
     }
 
+    @Override
+    public int hashCode() {
+        return getCenter().hashCode();
+    }
 }

@@ -4,8 +4,11 @@ import org.testng.annotations.Test;
 
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertNotNull;
+import static org.testng.AssertJUnit.assertTrue;
 
 public class VectorArrayTest {
+
+
     @Test
     public void testNotNull(){
         assertNotNull(new Vector3DArray(10));
@@ -72,5 +75,58 @@ public class VectorArrayTest {
     }
 
 
+    @Test
+    public void testFactor(){
+        Vector3DArray v = new Vector3DArray(2);
 
-}
+        Vector3D v1 = new Vector3D(1,1,1);
+        Vector3D v2 = new Vector3D(2,2,0);
+
+        v.set(0,v1);
+        v.set(1,v2);
+
+        Vector3D c[] = new Vector3D[2];
+
+        c[0] = new Vector3D(10,3,2);
+        c[1] = new Vector3D(1,1,1);
+
+        Vector3D r[] = new Vector3D[2];
+
+        try {
+            r = v.factor(c);
+        } catch (DiffLengthException e) {
+            e.printStackTrace();
+        }
+
+
+        assertTrue(r[0].equals(new Vector3D(10,3,2)));
+        assertTrue(r[1].equals(new Vector3D(2,2,0)));
+
+    }
+
+
+    @Test
+    public void testMove(){
+        Vector3DArray v = new Vector3DArray(2);
+
+        Vector3D v1 = new Vector3D(1,1,1);
+        Vector3D v2 = new Vector3D(2,-3,0);
+
+        v.set(0,v1);
+        v.set(1,v2);
+
+        Point3D p = new Point3D(0,8,-1);
+
+        Point3D r[];
+
+        r = v.move(p);
+
+
+        assertTrue(r[0].equals(new Point3D(1,9,0)));
+        assertTrue(r[1].equals(new Point3D(2,5,-1)));
+
+    }
+
+
+
+    }

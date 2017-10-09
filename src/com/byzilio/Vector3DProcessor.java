@@ -2,7 +2,7 @@ package com.byzilio;
 
 public class Vector3DProcessor {
 
-    public Vector3D sum(Vector3D a,Vector3D b){
+    public static Vector3D sum(Vector3D a,Vector3D b){
         return new Vector3D(a.getCenter().x + b.getCenter().x, a.getCenter().y + b.getCenter().y, a.getCenter().z + b.getCenter().z);
     }
 
