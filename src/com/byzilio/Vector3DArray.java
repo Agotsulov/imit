@@ -26,7 +26,8 @@ public class Vector3DArray {
 
 
     public void set(int i,Vector3D v) {
-        array[i] = v;
+
+        array[i] = new Vector3D(v.getCenter().x,v.getCenter().y,v.getCenter().z);
     }
 
     public int length(){
@@ -54,11 +55,11 @@ public class Vector3DArray {
         return -1;
     }
 
-    public Vector3D[] factor(Vector3D[] c) throws DiffLengthException {
+    public Vector3D[] factor(double[] c) throws DiffLengthException {
         Vector3D result[] = new Vector3D[length];
 
         for(int i = 0;i < c.length;i++){
-            result[i] = new Vector3D(array[i].getCenter().x * c[i].getCenter().x,array[i].getCenter().y * c[i].getCenter().y,array[i].getCenter().z * c[i].getCenter().z);
+            result[i] = new Vector3D(array[i].getCenter().x * c[i],array[i].getCenter().y * c[i],array[i].getCenter().z * c[i]);
         }
         if( 0 != (length - c.length) ){
             throw new DiffLengthException();

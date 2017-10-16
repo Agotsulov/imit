@@ -85,10 +85,10 @@ public class VectorArrayTest {
         v.set(0,v1);
         v.set(1,v2);
 
-        Vector3D c[] = new Vector3D[2];
+        double c[] = new double[2];
 
-        c[0] = new Vector3D(10,3,2);
-        c[1] = new Vector3D(1,1,1);
+        c[0] = 2;
+        c[1] = 3;
 
         Vector3D r[] = new Vector3D[2];
 
@@ -99,8 +99,8 @@ public class VectorArrayTest {
         }
 
 
-        assertTrue(r[0].equals(new Vector3D(10,3,2)));
-        assertTrue(r[1].equals(new Vector3D(2,2,0)));
+        assertTrue(r[0].equals(new Vector3D(2,2,2)));
+        assertTrue(r[1].equals(new Vector3D(6,6,0)));
 
     }
 
@@ -110,7 +110,7 @@ public class VectorArrayTest {
         Vector3DArray v = new Vector3DArray(2);
 
         Vector3D v1 = new Vector3D(1,1,1);
-        Vector3D v2 = new Vector3D(2,-3,0);
+        Vector3D v2 = new Vector3D(1,-3,0);
 
         v.set(0,v1);
         v.set(1,v2);
@@ -123,7 +123,7 @@ public class VectorArrayTest {
 
 
         assertTrue(r[0].equals(new Point3D(1,9,0)));
-        assertTrue(r[1].equals(new Point3D(2,5,-1)));
+        assertTrue(r[1].equals(new Point3D(1,5,-1)));
 
     }
 
