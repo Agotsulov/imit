@@ -1,10 +1,21 @@
 package com.byzilio.string;
 
+class NegativeException extends Exception{
+    public NegativeException() {
+        //initCause(e);
+        System.out.println("Less than zero");
+    }
+}
+
+
 public class StringProcessor {
 
 
-    public String repeat(String s,int N){
+    public String repeat(String s,int N) throws NegativeException {
         String r = new String();
+        if(N < 0) {
+            throw new NegativeException();
+        }
         for(int i = 0;i < N;i++){
             r += s;
         }
@@ -41,19 +52,32 @@ public class StringProcessor {
     }
 
     public void deleteEven(StringBuilder sb){
-        for (int i = sb.length() - sb.length() % 2 ; i >= 0; i -= 2)
-        {
-            sb = sb.deleteCharAt(i);
+        if(sb.length() == 2) sb = sb.deleteCharAt(0);
+        else {
+            for (int i = sb.length() - sb.length() % 2 ; i >= 0; i -= 2)
+            {
+                sb = sb.deleteCharAt(i);
+            }
         }
     }
 
     public void replaceFirstLast(StringBuilder sb){
         int firstStart = 0,firstEnd = 0,lastStart = 0,lastEnd = sb.length();
         int i = 0;
+
+        for(;i < sb.length();i++){
+            if(sb.charAt(i) != ' ') {
+                firstStart = i;
+                break;
+            }
+        }
+        /*
         if(sb.charAt(0) == ' ') {
             i = 1;
             firstStart = 1;
         }
+        */
+
 
         for(;i < sb.length();i++){
             if(sb.charAt(i) == ' ') {
@@ -62,15 +86,23 @@ public class StringProcessor {
             }
         }
 
+
+        for(i = sb.length() - 1;i > firstEnd;i--){
+            if(sb.charAt(i) != ' ') {
+                lastEnd = i + 1;
+                break;
+            }
+        }
+
+        /*
         i = sb.length() - 1;
         if(sb.charAt(sb.length() - 1) == ' ') {
             i = sb.length() - 2;
             lastEnd = sb.length() - 1;
         }
-
+        */
         for(;i > 0;i--){
             if(sb.charAt(i) == ' ') {
-                char cc = sb.charAt(i);
                 lastStart = i + 1;
                 break;
             }

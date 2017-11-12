@@ -44,4 +44,51 @@ public class FinanceReportTest {
     }
 
 
+    @Test
+    public void testFoundLess() throws IOException {
+        Payment p[] = new Payment[3];
+        p[0] = new Payment("АФфа",3,3,3,11325);
+        p[1] = new Payment("Аgasdgisadhghsadbgkjasdkg",5,3,16,15);
+        p[2] = new Payment("Ффа",1,1,3,141215);
+
+        FinanceReport f = new FinanceReport(p);
+        f.foundLess(20000);
+    }
+
+
+    @Test
+    public void testSumAll() throws IOException {
+        Payment p[] = new Payment[6];
+        p[0] = new Payment("АФфа",3,3,3,155);
+        p[1] = new Payment("Аgasdgisadhghsadbgkjasdkg",3,3,3,223);
+        p[2] = new Payment("Ффа",15,1,7,6105);
+        p[3] = new Payment("фыафыФфа",12,2,18,512505);
+        p[4] = new Payment("Фтывптатапфа",14,3,5,5);
+        p[5] = new Payment("Ффчсичсча",16,12,31,611251205);
+
+        FinanceReport f  = new FinanceReport(p);
+
+        assertEquals(f.sumDate("3.3.3"),378);
+    }
+
+    @Test
+    public void testGetMonthsWithOutP() throws IOException {
+        Payment p[] = new Payment[6];
+        p[0] = new Payment("АФфа",5,3,3,155);
+        p[1] = new Payment("Аgasdgisadhghsadbgkjasdkg",3,3,3,223);
+        p[2] = new Payment("Ффа",15,1,7,6105);
+        p[3] = new Payment("фыафыФфа",5,2,18,512505);
+        p[4] = new Payment("Фтывптатапфа",14,3,5,5);
+        p[5] = new Payment("Ффчсичсча",5,11,31,611251205);
+
+        FinanceReport f  = new FinanceReport(p);
+
+        String s[] = f.getMonthsWithOutP(5);
+        String r[] = {"Март","Апрель","Декабрь"};
+
+        assertEquals(s,r);
+        assertEquals(f.getMonthsWithOutP(5)[2],"Декабрь");
+    }
+
+
 }

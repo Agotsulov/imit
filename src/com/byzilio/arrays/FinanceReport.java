@@ -29,7 +29,7 @@ public class FinanceReport {
         for(int i = 0;i < payments.length;i++){
             if(payments[i].name.charAt(0) == c) {
                 Payment p = payments[i];
-                String o = String.format("Плательщик: %s дата: %d.%d.%d сумма: %d руб. %d коп. \n",
+                String o = String.format("Плательщик: %s дата: %d.%d.%d сумма: %d руб. %d коп.\n",
                         p.name,p.day,p.month,p.year,p.amount/100,p.amount%100);
                 out.write(o.getBytes());
             }
@@ -38,7 +38,7 @@ public class FinanceReport {
 
     public int sumDate(String date){
         int result = 0;
-        String s[] = date.split(".");
+        String s[] = date.split("\\.");
         int d = Integer.parseInt(s[0]);
         int m = Integer.parseInt(s[1]);
         int y = Integer.parseInt(s[2]);
@@ -54,7 +54,7 @@ public class FinanceReport {
         for(int i = 0;i < payments.length;i++){
             if(payments[i].amount < sum) {
                 Payment p = payments[i];
-                String o = String.format("Плательщик: %s дата: %d.%d.%d сумма: %d руб. %d коп.",
+                String o = String.format("Плательщик: %s дата: %d.%d.%d сумма: %d руб. %d коп.\n",
                         p.name,p.day,p.month,p.year,p.amount/100,p.amount%100);
                 out.write(o.getBytes());
             }
@@ -63,21 +63,26 @@ public class FinanceReport {
 
     public String[] getMonthsWithOutP(int y){
         String r[] = {"Январь",	"Февраль","Март","Апрель","Май","Июнь","Июль","Август","Сентябрь","Октябрь","Ноябрь","Декабрь"};
-        boolean t[] = new boolean[12];
-        for(int i = 0;i< payments.length;i++){
-            t[payments[i].month]= false;
+        boolean t[] = new boolean[13];
+        for(int i = 0;i < payments.length;i++){
+            if(payments[i].year == y) t[payments[i].month] = true;
         }
 
         int lel = 0;
-        for(int i = 0;i< 12;i++){
+        for(int i = 0;i <= 12;i++){
             if(t[i] == true) lel++;
         }
 
+        int k = 0;
         String s[] = new String[lel];
-        for(int i = 0;i< 12;i++){
-            s[i] = r[i];
+        if(lel != 0) {
+            for (int i = 0; i < 12; i++) {
+                if(t[i]) {
+                    s[k] = r[i];
+                    k++;
+                }
+            }
         }
-
 
         return s;
     }
