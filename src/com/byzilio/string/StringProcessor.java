@@ -11,7 +11,7 @@ class NegativeException extends Exception{
 public class StringProcessor {
 
 
-    public String repeat(String s,int N) throws NegativeException {
+    public static String repeat(String s,int N) throws NegativeException {
         String r = new String();
         if(N < 0) {
             throw new NegativeException();
@@ -52,12 +52,8 @@ public class StringProcessor {
     }
 
     public void deleteEven(StringBuilder sb){
-        if(sb.length() == 2) sb = sb.deleteCharAt(0);
-        else {
-            for (int i = sb.length() - sb.length() % 2 ; i >= 0; i -= 2)
-            {
-                sb = sb.deleteCharAt(i);
-            }
+        for (int i = 0; i < sb.length() ; i++) {
+            sb = sb.deleteCharAt(i);
         }
     }
 

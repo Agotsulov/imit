@@ -20,7 +20,7 @@ public class Payment {
     public Payment(String name, int year, int month, int day, int amount) {
         this.name = name;
         this.year = year;
-        this.month = month;
+        this.month = month - 1;
         this.day = day;
         this.amount = amount;
     }
